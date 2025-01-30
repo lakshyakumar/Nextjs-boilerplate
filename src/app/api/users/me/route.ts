@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (e) {
-    let error = Helpers.FetchError(e as Error);
+    const error = Helpers.FetchError(e as Error);
     console.error("Me error:", error);
     return NextResponse.json(
       {
