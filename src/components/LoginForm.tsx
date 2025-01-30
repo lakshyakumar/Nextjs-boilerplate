@@ -45,7 +45,7 @@ export default function LoginForm() {
 
       // Redirect to home page after successful login
       window.location.href = "/";
-    } catch (err) {
+    } catch {
       setError("An error occurred during login");
     }
   };

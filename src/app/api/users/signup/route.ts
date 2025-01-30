@@ -199,6 +199,7 @@ export async function POST(request: NextRequest) {
   } catch (e) {
     console.error("Signup error:", e);
     let error = Helpers.FetchError(e as Error);
+    console.error("Signup error:", error);
     return NextResponse.json(
       {
         success: false,

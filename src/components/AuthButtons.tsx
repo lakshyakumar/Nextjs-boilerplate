@@ -10,7 +10,7 @@ export default function AuthButtons() {
       try {
         const res = await fetch("/api/users/me");
         setIsAuthenticated(res.ok);
-      } catch (error) {
+      } catch {
         setIsAuthenticated(false);
       }
     };

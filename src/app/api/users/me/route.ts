@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Helpers } from "@/helpers/Helpers";
-import Errors from "@/common/errors";
 
 export async function GET(request: NextRequest) {
   try {
@@ -32,6 +31,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (e) {
     let error = Helpers.FetchError(e as Error);
+    console.error("Me error:", error);
     return NextResponse.json(
       {
         success: false,

@@ -1,6 +1,6 @@
 import { dbConnect } from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
-import Mail from "nodemailer/lib/mailer";
+// import Mail from "nodemailer/lib/mailer";
 import { MailingService } from "../Mailer/MailingService";
 import Errors from "@/common/errors";
 import { Helpers } from "@/helpers/Helpers";

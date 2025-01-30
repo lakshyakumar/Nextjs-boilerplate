@@ -103,6 +103,7 @@ export async function POST(request: NextRequest) {
     return response;
   } catch (e) {
     let error = Helpers.FetchError(e as Error);
+    console.error("Login error:", error);
     return NextResponse.json(
       {
         success: false,
