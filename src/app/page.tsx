@@ -21,11 +21,6 @@ export default function Home() {
           <AuthButtons />
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a href="/api-doc" className="text-blue-500 hover:underline">
-          API Documentation
-        </a>
-      </footer>
     </div>
   );
 }
