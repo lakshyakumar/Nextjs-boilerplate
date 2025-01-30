@@ -120,7 +120,7 @@ class Errors {
     status: 400,
   };
   static readonly INVALID_PHONE_NUMBER = {
-    message: "Invalid phone number",
+    message: "Invalid phone number format",
     status: 400,
   };
   static readonly PHONE_ALREADY_EXISTS = {
@@ -137,6 +137,14 @@ class Errors {
   };
   static readonly USERNAME_OR_EMAIL_OR_PHONE_REQUIRED = {
     message: "Username, email or phone number is required",
+    status: 400,
+  };
+  static readonly INVALID_EMAIL = {
+    message: "Invalid email format",
+    status: 400,
+  };
+  static readonly USERNAME_ALREADY_EXISTS = {
+    message: "Username already exists",
     status: 400,
   };
 }

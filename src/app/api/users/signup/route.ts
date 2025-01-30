@@ -133,15 +133,28 @@ export async function POST(request: NextRequest) {
       username,
       email,
       phoneNumber,
-      // Don't log password
     });
 
     if (!firstName || !lastName || !username || !password) {
       throw new Error(Errors.MISSING_FIELDS.message);
     }
 
-    if (!email && !phoneNumber) {
+    // If neither email nor phone is provided
+    if (email === null && phoneNumber === null) {
       throw new Error(Errors.PHONE_OR_EMAIL_REQUIRED.message);
+    }
+
+    // Only validate email/phone if they are provided
+    if (email && typeof email === "string" && email.trim() === "") {
+      throw new Error(Errors.INVALID_EMAIL.message);
+    }
+
+    if (
+      phoneNumber &&
+      typeof phoneNumber === "string" &&
+      phoneNumber.trim() === ""
+    ) {
+      throw new Error(Errors.INVALID_PHONE_NUMBER.message);
     }
 
     const usernameRegex = config.validations.username.map((item) => ({
@@ -161,7 +174,6 @@ export async function POST(request: NextRequest) {
     if (invalidPassword) throw new Error(invalidPassword.message);
 
     if (phoneNumber) {
-      // Basic phone number validation - modify regex according to your needs
       const phoneRegex = /^\+?[1-9]\d{1,14}$/;
       if (!phoneRegex.test(phoneNumber)) {
         throw new Error(Errors.INVALID_PHONE_NUMBER.message);
@@ -180,7 +192,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: true,
-        message: "User registered successfully",
+        message: "User registered successfully. Please verify your account.",
       },
       { status: 201 }
     );
