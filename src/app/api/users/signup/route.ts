@@ -198,7 +198,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (e) {
     console.error("Signup error:", e);
-    let error = Helpers.FetchError(e as Error);
+    const error = Helpers.FetchError(e as Error);
     console.error("Signup error:", error);
     return NextResponse.json(
       {
@@ -237,7 +237,7 @@ export async function PATCH(request: NextRequest) {
       { status: 200 }
     );
   } catch (e) {
-    let error = Helpers.FetchError(e as Error);
+    const error = Helpers.FetchError(e as Error);
     return NextResponse.json(
       {
         status: "error",
