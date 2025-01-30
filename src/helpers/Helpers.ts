@@ -52,7 +52,7 @@ export class Helpers {
   }
   static FetchError(e: Error) {
     let error = Errors.UNKNOWN_ERROR;
-    for (let key in Errors) {
+    for (const key in Errors) {
       if (
         e.message ===
         (Errors as unknown as Record<string, { message: string }>)[key].message
