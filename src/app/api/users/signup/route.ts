@@ -180,7 +180,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const user = await authenticationService.registerUser(
+    await authenticationService.registerUser(
       firstName,
       lastName,
       username,
@@ -193,7 +193,6 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         message: "User registered successfully. Please verify your account.",
-        otp: user.emailVerificationOTP || user.phoneVerificationOTP,
       },
       { status: 201 }
     );
