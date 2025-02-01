@@ -25,6 +25,7 @@ export default function SignupForm() {
   const [error, setError] = useState<string>("");
   const [showOtpForm, setShowOtpForm] = useState(false);
   const [otp, setOtp] = useState("");
+  const [generatedOtp, setGeneratedOtp] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -57,7 +58,7 @@ export default function SignupForm() {
         setError(data.message);
         return;
       }
-
+      setGeneratedOtp(data.otp);
       // Show OTP form after successful registration
       setShowOtpForm(true);
     } catch (err) {
@@ -101,6 +102,14 @@ export default function SignupForm() {
       {!showOtpForm ? (
         <form onSubmit={handleSubmit} className="space-y-4">
           <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
+
+          {/* for development purpose */}
+          {generatedOtp && (
+            <div className="p-4 mb-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded">
+              <p className="font-bold">Development Mode</p>
+              <p>Generated OTP: {generatedOtp}</p>
+            </div>
+          )}
 
           <div className="grid grid-cols-2 gap-4 mb-6">
             <button
