@@ -15,7 +15,7 @@ export async function POST() {
     response.cookies.delete(config.other["cookie-name"]);
 
     return response;
-  } catch (e) {
+  } catch {
     return NextResponse.json(
       {
         success: false,
