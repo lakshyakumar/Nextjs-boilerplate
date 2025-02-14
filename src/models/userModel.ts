@@ -18,16 +18,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       max: 255,
       min: 6,
-      sparse: true,
-      unique: true,
-      index: true,
       default: null,
     },
     phoneNumber: {
       type: String,
-      sparse: true,
-      unique: true,
-      index: true,
       default: null,
     },
     password: {
@@ -75,19 +69,23 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Add compound index to ensure either email or phone is present
+// Create compound indexes with partial filter expressions
 userSchema.index(
-  { email: 1, phoneNumber: 1 },
+  { email: 1 },
   {
-    partialFilterExpression: {
-      $or: [
-        { email: { $type: "string" } },
-        { phoneNumber: { $type: "string" } },
-      ],
-    },
+    unique: true,
+    partialFilterExpression: { email: { $ne: null } },
   }
 );
 
-const User = mongoose.models.users || mongoose.model("users", userSchema);
+userSchema.index(
+  { phoneNumber: 1 },
+  {
+    unique: true,
+    partialFilterExpression: { phoneNumber: { $ne: null } },
+  }
+);
+
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;

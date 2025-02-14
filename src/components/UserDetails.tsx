@@ -25,6 +25,21 @@ export default function UserDetails() {
     fetchUserDetails();
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/users/logout", {
+        method: "POST",
+      });
+
+      if (res.ok) {
+        // Redirect to home page after logout
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -50,6 +65,12 @@ export default function UserDetails() {
         <p>
           <span className="font-semibold">Phone:</span> {user.phoneNumber}
         </p>
+        <button
+          onClick={handleLogout}
+          className="mt-4 w-full bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );
