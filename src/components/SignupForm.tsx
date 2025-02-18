@@ -98,12 +98,14 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-6 flex flex-col justify-center items-center w-full gap-4">
+    <div className="max-w-md mx-auto mt-4 lg:mt-8 p-4 lg:p-6 flex flex-col justify-center items-center w-full gap-4">
       {!showOtpForm ? (
         <form onSubmit={handleSubmit} className="space-y-4 w-full">
-          <h2 className="text-3xl font-bold mb-6">Sign Up</h2>
+          <h2 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6">
+            Sign Up
+          </h2>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1">
                 First Name
@@ -113,7 +115,7 @@ export default function SignupForm() {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+                className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
                 placeholder="First name"
                 required
               />
@@ -127,7 +129,7 @@ export default function SignupForm() {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+                className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
                 placeholder="Last name"
                 required
               />
@@ -141,7 +143,7 @@ export default function SignupForm() {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+              className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
               placeholder="Choose a username"
               required
             />
@@ -151,7 +153,7 @@ export default function SignupForm() {
             <button
               type="button"
               onClick={() => setSignupMethod("email")}
-              className={`p-2 text-center rounded-full ${
+              className={`p-2 text-center rounded-full text-sm lg:text-base ${
                 signupMethod === "email"
                   ? "bg-[#F8623A] text-white"
                   : "bg-transparent border border-white/30 text-white"
@@ -162,7 +164,7 @@ export default function SignupForm() {
             <button
               type="button"
               onClick={() => setSignupMethod("phone")}
-              className={`p-2 text-center rounded-full ${
+              className={`p-2 text-center rounded-full text-sm lg:text-base ${
                 signupMethod === "phone"
                   ? "bg-[#F8623A] text-white"
                   : "bg-transparent border border-white/30 text-white"
@@ -180,7 +182,7 @@ export default function SignupForm() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+                className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
                 placeholder="Enter your email"
                 required
               />
@@ -195,7 +197,7 @@ export default function SignupForm() {
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+                className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
                 placeholder="+1234567890"
                 required
               />
@@ -209,7 +211,7 @@ export default function SignupForm() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+              className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
               placeholder="Create a password"
               required
             />
@@ -219,29 +221,31 @@ export default function SignupForm() {
 
           <button
             type="submit"
-            className="w-full bg-[#F8623A] text-white px-4 py-3.5 rounded-full hover:bg-[#F8623A]/80 font-semibold text-xl"
+            className="w-full bg-[#F8623A] text-white px-3 lg:px-4 py-2.5 lg:py-3.5 rounded-full hover:bg-[#F8623A]/80 font-semibold text-lg lg:text-xl"
           >
             Sign Up
           </button>
 
-          <div className="flex items-center gap-4 w-full">
+          <div className="flex items-center gap-2 lg:gap-4 w-full my-4">
             <div className="h-[1.5px] bg-white/70 flex-grow"></div>
-            <span className="text-white/50 text-sm">Or Sign Up With</span>
+            <span className="text-white/50 text-xs lg:text-sm whitespace-nowrap">
+              Or Sign Up With
+            </span>
             <div className="h-[1.5px] bg-white/70 flex-grow"></div>
           </div>
 
-          <div className="flex gap-4 w-full">
-            <button className="w-full bg-white text-black px-4 py-3.5 rounded-full font-normal text-xl flex items-center justify-center gap-2">
+          <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 w-full">
+            <button className="w-full bg-white text-black px-3 lg:px-4 py-2.5 lg:py-3.5 rounded-full font-normal text-base lg:text-xl flex items-center justify-center gap-2">
               <Image src={google} alt="Google" width={20} height={20} />
               Google
             </button>
-            <button className="w-full bg-white text-black px-4 py-3.5 rounded-full font-normal text-xl flex items-center justify-center gap-2">
+            <button className="w-full bg-white text-black px-3 lg:px-4 py-2.5 lg:py-3.5 rounded-full font-normal text-base lg:text-xl flex items-center justify-center gap-2">
               <Image src={facebook} alt="Facebook" width={20} height={20} />
               Facebook
             </button>
           </div>
 
-          <p className="text-sm text-white/50 text-center">
+          <p className="text-xs lg:text-sm text-white/50 text-center mt-4">
             Already have an account?{" "}
             <Link href="/login" className="font-bold text-[#EA9459]">
               Sign In
@@ -250,7 +254,9 @@ export default function SignupForm() {
         </form>
       ) : (
         <form onSubmit={handleOtpSubmit} className="space-y-4 w-full">
-          <h2 className="text-3xl font-bold mb-6">Verify OTP</h2>
+          <h2 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6">
+            Verify OTP
+          </h2>
 
           <div>
             <label className="block text-sm font-medium mb-1">Enter OTP</label>
@@ -258,7 +264,7 @@ export default function SignupForm() {
               type="text"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+              className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
               placeholder="Enter OTP"
               required
             />
@@ -268,7 +274,7 @@ export default function SignupForm() {
 
           <button
             type="submit"
-            className="w-full bg-[#F8623A] text-white px-4 py-3.5 rounded-full hover:bg-[#F8623A]/80 font-semibold text-xl"
+            className="w-full bg-[#F8623A] text-white px-3 lg:px-4 py-2.5 lg:py-3.5 rounded-full hover:bg-[#F8623A]/80 font-semibold text-lg lg:text-xl"
           >
             Verify OTP
           </button>
