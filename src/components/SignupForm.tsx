@@ -1,5 +1,9 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import google from "@/assets/iconGoogle.svg";
+import facebook from "@/assets/btnSigninwithFb.svg";
 
 interface SignupFormData {
   firstName: string;
@@ -34,7 +38,6 @@ export default function SignupForm() {
     e.preventDefault();
     setError("");
 
-    // Clear the unused field before submission
     const submissionData = {
       firstName: formData.firstName,
       lastName: formData.lastName,
@@ -58,7 +61,6 @@ export default function SignupForm() {
         return;
       }
 
-      // Show OTP form after successful registration
       setShowOtpForm(true);
     } catch (err) {
       console.error("Signup error:", err);
@@ -88,7 +90,6 @@ export default function SignupForm() {
         return;
       }
 
-      // Redirect to login page after successful verification
       window.location.href = "/login";
     } catch (err) {
       console.error("Verification error:", err);
@@ -97,35 +98,10 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <div className="max-w-md mx-auto px-6 flex flex-col justify-center items-center w-full gap-4">
       {!showOtpForm ? (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
-
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <button
-              type="button"
-              onClick={() => setSignupMethod("email")}
-              className={`p-2 text-center rounded-lg ${
-                signupMethod === "email"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 dark:bg-gray-700"
-              }`}
-            >
-              Email
-            </button>
-            <button
-              type="button"
-              onClick={() => setSignupMethod("phone")}
-              className={`p-2 text-center rounded-lg ${
-                signupMethod === "phone"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 dark:bg-gray-700"
-              }`}
-            >
-              Phone
-            </button>
-          </div>
+        <form onSubmit={handleSubmit} className="space-y-4 w-full">
+          <h2 className="text-3xl font-bold mb-6">Sign Up</h2>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -137,8 +113,8 @@ export default function SignupForm() {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                className="w-full p-2 border rounded text-black"
-                placeholder="Enter your first name"
+                className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+                placeholder="First name"
                 required
               />
             </div>
@@ -151,8 +127,8 @@ export default function SignupForm() {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                className="w-full p-2 border rounded text-black"
-                placeholder="Enter your last name"
+                className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+                placeholder="Last name"
                 required
               />
             </div>
@@ -165,10 +141,35 @@ export default function SignupForm() {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="w-full p-2 border rounded text-black"
-              placeholder="Enter your username"
+              className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+              placeholder="Choose a username"
               required
             />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <button
+              type="button"
+              onClick={() => setSignupMethod("email")}
+              className={`p-2 text-center rounded-full ${
+                signupMethod === "email"
+                  ? "bg-[#F8623A] text-white"
+                  : "bg-transparent border border-white/30 text-white"
+              }`}
+            >
+              Email
+            </button>
+            <button
+              type="button"
+              onClick={() => setSignupMethod("phone")}
+              className={`p-2 text-center rounded-full ${
+                signupMethod === "phone"
+                  ? "bg-[#F8623A] text-white"
+                  : "bg-transparent border border-white/30 text-white"
+              }`}
+            >
+              Phone
+            </button>
           </div>
 
           {signupMethod === "email" ? (
@@ -179,7 +180,7 @@ export default function SignupForm() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full p-2 border rounded text-black"
+                className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
                 placeholder="Enter your email"
                 required
               />
@@ -194,9 +195,9 @@ export default function SignupForm() {
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                className="w-full p-2 border rounded text-black"
-                required
+                className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
                 placeholder="+1234567890"
+                required
               />
             </div>
           )}
@@ -208,9 +209,9 @@ export default function SignupForm() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full p-2 border rounded text-black"
+              className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+              placeholder="Create a password"
               required
-              placeholder="Enter your password"
             />
           </div>
 
@@ -218,14 +219,38 @@ export default function SignupForm() {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            className="w-full bg-[#F8623A] text-white px-4 py-3.5 rounded-full hover:bg-[#F8623A]/80 font-semibold text-xl"
           >
             Sign Up
           </button>
+
+          <div className="flex items-center gap-4 w-full">
+            <div className="h-[1.5px] bg-white/70 flex-grow"></div>
+            <span className="text-white/50 text-sm">Or Sign Up With</span>
+            <div className="h-[1.5px] bg-white/70 flex-grow"></div>
+          </div>
+
+          <div className="flex gap-4 w-full">
+            <button className="w-full bg-white text-black px-4 py-3.5 rounded-full font-normal text-xl flex items-center justify-center gap-2">
+              <Image src={google} alt="Google" width={20} height={20} />
+              Google
+            </button>
+            <button className="w-full bg-white text-black px-4 py-3.5 rounded-full font-normal text-xl flex items-center justify-center gap-2">
+              <Image src={facebook} alt="Facebook" width={20} height={20} />
+              Facebook
+            </button>
+          </div>
+
+          <p className="text-sm text-white/50 text-center">
+            Already have an account?{" "}
+            <Link href="/login" className="font-bold text-[#EA9459]">
+              Sign In
+            </Link>
+          </p>
         </form>
       ) : (
-        <form onSubmit={handleOtpSubmit} className="space-y-4">
-          <h2 className="text-2xl font-bold mb-6">Verify OTP</h2>
+        <form onSubmit={handleOtpSubmit} className="space-y-4 w-full">
+          <h2 className="text-3xl font-bold mb-6">Verify OTP</h2>
 
           <div>
             <label className="block text-sm font-medium mb-1">Enter OTP</label>
@@ -233,9 +258,9 @@ export default function SignupForm() {
               type="text"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              className="w-full p-2 border rounded text-black "
-              required
+              className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
               placeholder="Enter OTP"
+              required
             />
           </div>
 
@@ -243,7 +268,7 @@ export default function SignupForm() {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            className="w-full bg-[#F8623A] text-white px-4 py-3.5 rounded-full hover:bg-[#F8623A]/80 font-semibold text-xl"
           >
             Verify OTP
           </button>
