@@ -151,13 +151,13 @@ export default function LoginForm() {
         <div className="h-[1.5px] bg-white/70 flex-grow"></div>
       </div>
       <div className="flex gap-4 w-full">
-        <button className="w-full bg-white text-black px-4 py-3.5 rounded-full font-normal text-xl flex items-center justify-center gap-2">
+        <button className="w-full bg-white text-black px-4 py-2 rounded-full font-normal lg:text-xl flex items-center justify-center gap-2">
           <Image src={google} alt="Google" width={20} height={20} />
           Google
         </button>
         <button
           type="submit"
-          className="w-full bg-white text-black px-4 py-3.5 rounded-full font-normal text-xl flex items-center justify-center gap-2"
+          className="w-full bg-white text-black px-4 py-2 rounded-full font-normal lg:text-xl flex items-center justify-center gap-2"
         >
           <Image src={facebook} alt="Facebook" width={20} height={20} />
           Facebook
