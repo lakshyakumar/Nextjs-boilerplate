@@ -55,7 +55,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 flex flex-col justify-center items-center w-full gap-4">
+    <div className="max-w-md mx-auto lg:mt-8 lg:p-6 flex flex-col justify-center items-center w-full gap-4">
       <form onSubmit={handleSubmit} className="space-y-4 w-full">
         <h2 className="text-3xl font-bold mb-6">Login</h2>
 
