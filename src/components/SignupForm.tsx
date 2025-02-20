@@ -99,7 +99,7 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto lg:mt-8 lg:p-6 flex flex-col justify-center items-center w-full gap-4">
+    <div className="max-w-md mx-auto lg:p-6 lg:pt-0 flex flex-col justify-center items-center w-full gap-4">
       {!showOtpForm ? (
         <form onSubmit={handleSubmit} className="space-y-4 w-full">
           <h2 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6">
