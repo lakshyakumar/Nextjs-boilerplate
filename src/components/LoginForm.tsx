@@ -60,23 +60,20 @@ export default function LoginForm() {
       <form onSubmit={handleSubmit} className="space-y-4 w-full">
         <h2 className="text-3xl font-bold mb-6">Login</h2>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Email / Phone
-          </label>
+        <div className="form-group">
           <input
             type="text"
             name="identifier"
             value={formData.identifier}
             onChange={handleChange}
             className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-            placeholder="Enter your email or phone number"
+            placeholder=""
             required
           />
+          <label>Email / Phone</label>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">Password</label>
+        <div className="form-group">
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -84,7 +81,7 @@ export default function LoginForm() {
               value={formData.password}
               onChange={handleChange}
               className="w-full px-4 py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-              placeholder="Enter your password"
+              placeholder=""
               required
             />
             <button
@@ -129,6 +126,7 @@ export default function LoginForm() {
                 </svg>
               )}
             </button>
+            <label>Password</label>
           </div>
         </div>
 

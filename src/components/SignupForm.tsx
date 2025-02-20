@@ -106,48 +106,44 @@ export default function SignupForm() {
             Sign Up
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                First Name
-              </label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:gap-4">
+            <div className="form-group">
               <input
                 type="text"
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
                 className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-                placeholder="First name"
+                placeholder=""
                 required
               />
+              <label>First Name</label>
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Last Name
-              </label>
+            <div className="form-group !mb-0">
               <input
                 type="text"
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
                 className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-                placeholder="Last name"
+                placeholder=""
                 required
               />
+              <label>Last Name</label>
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Username</label>
+          <div className="form-group">
             <input
               type="text"
               name="username"
               value={formData.username}
               onChange={handleChange}
               className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-              placeholder="Choose a username"
+              placeholder=""
               required
             />
+            <label>Username</label>
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-4">
@@ -176,37 +172,34 @@ export default function SignupForm() {
           </div>
 
           {signupMethod === "email" ? (
-            <div>
-              <label className="block text-sm font-medium mb-1">Email</label>
+            <div className="form-group">
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-                placeholder="Enter your email"
+                placeholder=""
                 required
               />
+              <label>Email</label>
             </div>
           ) : (
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Phone Number
-              </label>
+            <div className="form-group">
               <input
                 type="tel"
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-                placeholder="+1234567890"
+                placeholder=""
                 required
               />
+              <label>Phone Number</label>
             </div>
           )}
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
+          <div className="form-group">
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -214,9 +207,10 @@ export default function SignupForm() {
                 value={formData.password}
                 onChange={handleChange}
                 className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-                placeholder="Create a password"
+                placeholder=""
                 required
               />
+              <label>Password</label>
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -306,8 +300,8 @@ export default function SignupForm() {
             Verify OTP
           </h2>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Enter OTP</label>
+          <div className="form-group">
+            <label>Enter OTP</label>
             <input
               type="text"
               value={otp}

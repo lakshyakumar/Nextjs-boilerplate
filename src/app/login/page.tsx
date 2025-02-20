@@ -16,7 +16,7 @@ export default function LoginPage() {
           <Image
             src={Car}
             alt="Car"
-            className="w-[300px] md:w-[400px] lg:w-[600px] h-auto"
+            className="w-[250px] md:w-[400px] lg:w-[600px] h-auto"
           />
         </div>
         <div className="w-full lg:w-[50%] px-4">

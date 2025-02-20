@@ -7,7 +7,7 @@ export default function SignUpPage() {
   return (
     <div className="container min-h-screen">
       <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen w-full mx-auto px-4 py-8">
-        <div className="w-full lg:w-[50%] flex flex-col items-center justify-center gap-10 mb-8 lg:mb-0">
+        <div className="w-full lg:w-[50%] flex flex-col items-center justify-center gap-5 lg:gap-10 mb-8 lg:mb-0">
           <Image
             src={Logo}
             alt="Logo"
@@ -16,7 +16,7 @@ export default function SignUpPage() {
           <Image
             src={Car}
             alt="Car"
-            className="w-[300px] md:w-[400px] lg:w-[600px] h-auto"
+            className="w-[250px] md:w-[400px] lg:w-[600px] h-auto"
           />
         </div>
         <div className="w-full lg:w-[50%] px-4">
