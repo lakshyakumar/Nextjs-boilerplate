@@ -2,40 +2,29 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    firstName: {
+    name: {
       type: String,
-      required: [true, "Please enter your first name"],
-      min: 3,
-      max: 255,
-    },
-    lastName: {
-      type: String,
-      required: [true, "Please enter your last name"],
+      required: [true, "Please enter your name"],
       min: 3,
       max: 255,
     },
     email: {
       type: String,
+      required: [true, "Please enter your email"],
+      unique: true,
       max: 255,
       min: 6,
-      default: null,
     },
     phoneNumber: {
       type: String,
-      default: null,
+      required: [true, "Please enter your phone number"],
+      unique: true,
     },
     password: {
       type: String,
       required: [true, "Please enter your password"],
       max: 1024,
       min: 5,
-    },
-    username: {
-      type: String,
-      required: [true, "Please enter your username"],
-      max: 255,
-      min: 5,
-      unique: true,
     },
     isEmailVerified: {
       type: Boolean,

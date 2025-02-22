@@ -6,22 +6,15 @@ import google from "@/assets/iconGoogle.svg";
 import facebook from "@/assets/btnSigninwithFb.svg";
 
 interface SignupFormData {
-  firstName: string;
-  lastName: string;
-  username: string;
+  name: string;
   email: string;
   phoneNumber: string;
   password: string;
 }
 
-type SignupMethod = "email" | "phone";
-
 export default function SignupForm() {
-  const [signupMethod, setSignupMethod] = useState<SignupMethod>("email");
   const [formData, setFormData] = useState<SignupFormData>({
-    firstName: "",
-    lastName: "",
-    username: "",
+    name: "",
     email: "",
     phoneNumber: "",
     password: "",
@@ -39,20 +32,11 @@ export default function SignupForm() {
     e.preventDefault();
     setError("");
 
-    const submissionData = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      username: formData.username,
-      password: formData.password,
-      email: signupMethod === "email" ? formData.email : null,
-      phoneNumber: signupMethod === "phone" ? formData.phoneNumber : null,
-    };
-
     try {
       const res = await fetch("/api/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(submissionData),
+        body: JSON.stringify(formData),
       });
 
       const data = await res.json();
@@ -78,8 +62,8 @@ export default function SignupForm() {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: signupMethod === "email" ? formData.email : null,
-          phoneNumber: signupMethod === "phone" ? formData.phoneNumber : null,
+          email: formData.email,
+          phoneNumber: formData.phoneNumber,
           otp,
         }),
       });
@@ -106,98 +90,44 @@ export default function SignupForm() {
             Sign Up
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:gap-4">
-            <div className="form-group">
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-                placeholder=""
-                required
-              />
-              <label>First Name</label>
-            </div>
-            <div className="form-group !mb-0">
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-                placeholder=""
-                required
-              />
-              <label>Last Name</label>
-            </div>
-          </div>
-
           <div className="form-group">
             <input
               type="text"
-              name="username"
-              value={formData.username}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
               placeholder=""
               required
             />
-            <label>Username</label>
+            <label>Full Name</label>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <button
-              type="button"
-              onClick={() => setSignupMethod("email")}
-              className={`p-2 text-center rounded-full text-sm lg:text-base ${
-                signupMethod === "email"
-                  ? "bg-[#F8623A] text-white"
-                  : "bg-transparent border border-white/30 text-white"
-              }`}
-            >
-              Email
-            </button>
-            <button
-              type="button"
-              onClick={() => setSignupMethod("phone")}
-              className={`p-2 text-center rounded-full text-sm lg:text-base ${
-                signupMethod === "phone"
-                  ? "bg-[#F8623A] text-white"
-                  : "bg-transparent border border-white/30 text-white"
-              }`}
-            >
-              Phone
-            </button>
+          <div className="form-group">
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+              placeholder=""
+              required
+            />
+            <label>Email</label>
           </div>
 
-          {signupMethod === "email" ? (
-            <div className="form-group">
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-                placeholder=""
-                required
-              />
-              <label>Email</label>
-            </div>
-          ) : (
-            <div className="form-group">
-              <input
-                type="tel"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
-                placeholder=""
-                required
-              />
-              <label>Phone Number</label>
-            </div>
-          )}
+          <div className="form-group">
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              className="w-full px-3 lg:px-4 py-2.5 lg:py-3.5 border border-white/30 rounded-full bg-transparent focus:bg-transparent focus:outline-none focus:ring-2 focus:ring-[#F8623A] focus:border-transparent text-white placeholder:text-gray-500"
+              placeholder=""
+              required
+            />
+            <label>Phone Number</label>
+          </div>
 
           <div className="form-group">
             <div className="relative">
@@ -260,7 +190,7 @@ export default function SignupForm() {
 
           <button
             type="submit"
-            className="w-full bg-[#F8623A] text-white px-3 lg:px-4 py-2.5 lg:py-3.5 rounded-full hover:bg-[#F8623A]/80 font-semibold text-lg lg:text-xl"
+            className="w-full bg-[#F8623A] text-white px-3 lg:px-4 py-[0.75rem] rounded-full hover:bg-[#F8623A]/80 font-semibold text-lg lg:text-xl"
           >
             Sign Up
           </button>

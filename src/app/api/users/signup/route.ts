@@ -124,36 +124,20 @@ const authenticationService = new AuthenticationService();
 
 export async function POST(request: NextRequest) {
   try {
-    const { firstName, lastName, username, email, phoneNumber, password } =
-      await request.json();
+    const { name, email, phoneNumber, password } = await request.json();
 
-    console.log("Signup attempt with:", {
-      firstName,
-      lastName,
-      username,
-      email,
-      phoneNumber,
-    });
-
-    if (!firstName || !lastName || !username || !password) {
+    if (!name || !email || !phoneNumber || !password) {
       throw new Error(Errors.MISSING_FIELDS.message);
     }
 
-    // If neither email nor phone is provided
-    if (email === null && phoneNumber === null) {
-      throw new Error(Errors.PHONE_OR_EMAIL_REQUIRED.message);
-    }
-
-    // Only validate email/phone if they are provided
-    if (email && typeof email === "string" && email.trim() === "") {
+    // Validate email format
+    if (typeof email !== "string" || email.trim() === "") {
       throw new Error(Errors.INVALID_EMAIL.message);
     }
 
-    if (
-      phoneNumber &&
-      typeof phoneNumber === "string" &&
-      phoneNumber.trim() === ""
-    ) {
+    // Validate phone number format
+    const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+    if (!phoneRegex.test(phoneNumber)) {
       throw new Error(Errors.INVALID_PHONE_NUMBER.message);
     }
 
@@ -162,7 +146,7 @@ export async function POST(request: NextRequest) {
       message: item.message,
       error: item.error,
     }));
-    const invalidUsername = usernameRegex.find((r) => !r.regex.test(username));
+    const invalidUsername = usernameRegex.find((r) => !r.regex.test(name));
     if (invalidUsername) throw new Error(invalidUsername.message);
 
     const passwordRegex = config.validations.password.map((item) => ({
@@ -173,17 +157,8 @@ export async function POST(request: NextRequest) {
     const invalidPassword = passwordRegex.find((r) => !r.regex.test(password));
     if (invalidPassword) throw new Error(invalidPassword.message);
 
-    if (phoneNumber) {
-      const phoneRegex = /^\+?[1-9]\d{1,14}$/;
-      if (!phoneRegex.test(phoneNumber)) {
-        throw new Error(Errors.INVALID_PHONE_NUMBER.message);
-      }
-    }
-
     await authenticationService.registerUser(
-      firstName,
-      lastName,
-      username,
+      name,
       email,
       phoneNumber,
       password
@@ -197,9 +172,7 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (e) {
-    console.error("Signup error:", e);
     const error = Helpers.FetchError(e as Error);
-    console.error("Signup error:", error);
     return NextResponse.json(
       {
         success: false,

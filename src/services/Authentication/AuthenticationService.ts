@@ -19,47 +19,29 @@ export class AuthenticationService {
   }
 
   registerUser = async (
-    firstName: string,
-    lastName: string,
-    username: string,
-    email: string | null,
-    phoneNumber: string | null,
+    name: string,
+    email: string,
+    phoneNumber: string,
     password: string
   ) => {
     try {
-      if (!email && !phoneNumber) {
-        throw new Error(Errors.PHONE_OR_EMAIL_REQUIRED.message);
+      // Check if email exists
+      const userByEmail = await User.findOne({ email });
+      if (userByEmail) {
+        throw new Error(Errors.USER_ALREADY_EXISTS.message);
       }
 
-      // Check if username exists
-      const existingUsername = await User.findOne({ username });
-      if (existingUsername) {
-        throw new Error(Errors.USERNAME_ALREADY_EXISTS.message);
-      }
-
-      // Check if email exists (if provided)
-      if (email) {
-        const userByEmail = await User.findOne({ email });
-        if (userByEmail) {
-          throw new Error(Errors.USER_ALREADY_EXISTS.message);
-        }
-      }
-
-      // Check if phone exists (if provided)
-      if (phoneNumber) {
-        const userByPhone = await User.findOne({ phoneNumber });
-        if (userByPhone) {
-          throw new Error(Errors.PHONE_ALREADY_EXISTS.message);
-        }
+      // Check if phone exists
+      const userByPhone = await User.findOne({ phoneNumber });
+      if (userByPhone) {
+        throw new Error(Errors.PHONE_ALREADY_EXISTS.message);
       }
 
       const salt = await Helpers.salt(10);
       const hashedPassword = await Helpers.hash(password, salt);
 
       const newUser = new User({
-        firstName,
-        lastName,
-        username,
+        name,
         email,
         phoneNumber,
         password: hashedPassword,
@@ -68,27 +50,24 @@ export class AuthenticationService {
 
       const savedUser = await newUser.save();
 
-      const otp = Helpers.generateOtp(
+      // Generate and send OTP for both email and phone
+      const emailOtp = Helpers.generateOtp(
+        config.registeration.emailVerification.otpLength
+      );
+      const phoneOtp = Helpers.generateOtp(
         config.registeration.emailVerification.otpLength
       );
 
-      if (email) {
-        await User.findByIdAndUpdate(savedUser._id, {
-          emailVerificationOTP: otp,
-          verificationOTPExpiry:
-            Date.now() +
-            config.registeration.emailVerification.expiryInMinutes * 60 * 1000,
-        });
-        await this.mailer.sendVerificationOTPEmail(email, otp);
-      } else if (phoneNumber) {
-        await User.findByIdAndUpdate(savedUser._id, {
-          phoneVerificationOTP: otp,
-          verificationOTPExpiry:
-            Date.now() +
-            config.registeration.emailVerification.expiryInMinutes * 60 * 1000,
-        });
-        await this.smsService.sendVerificationOTP(phoneNumber, otp);
-      }
+      await User.findByIdAndUpdate(savedUser._id, {
+        emailVerificationOTP: emailOtp,
+        phoneVerificationOTP: phoneOtp,
+        verificationOTPExpiry:
+          Date.now() +
+          config.registeration.emailVerification.expiryInMinutes * 60 * 1000,
+      });
+
+      await this.mailer.sendVerificationOTPEmail(email, emailOtp);
+      await this.smsService.sendVerificationOTP(phoneNumber, phoneOtp);
 
       return savedUser;
     } catch (e) {
