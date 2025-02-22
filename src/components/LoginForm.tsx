@@ -140,7 +140,7 @@ export default function LoginForm() {
 
         <button
           type="submit"
-          className="w-full bg-[#F8623A] text-white px-4 py-3.5 rounded-full hover:bg-[#F8623A]/80 font-semibold text-xl"
+          className="w-full bg-[#F8623A] text-white px-4 py-[0.75rem] rounded-full hover:bg-[#F8623A]/80 font-semibold text-xl"
         >
           Sign In
         </button>

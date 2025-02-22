@@ -6,8 +6,8 @@ import Car from "@/assets/Car.svg";
 export default function LoginPage() {
   return (
     <div className="container min-h-screen">
-      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen w-full mx-auto px-4 py-8">
-        <div className="w-full lg:w-[50%] flex flex-col items-center justify-center gap-5 lg:gap-10 mb-8 lg:mb-0">
+      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen w-full mx-auto px-4 lg:py-8 py-4">
+        <div className="w-full lg:w-[50%] flex flex-col items-center justify-center gap-5 lg:gap-10 mb-4 lg:mb-0">
           <Image
             src={Logo}
             alt="Logo"
