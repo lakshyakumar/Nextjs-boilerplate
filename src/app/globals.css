@@ -7,7 +7,6 @@ body {
   background: #1a1919;
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
-  overflow: hidden;
 }
 
 input:-webkit-autofill,
