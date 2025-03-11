@@ -143,6 +143,47 @@ class Errors {
     message: 'ERROR_SENDING_SMS',
     status: 400,
   };
+  static readonly RESOURCE_ID_REQUIRED = {
+    message: 'Resource ID is required',
+    status: 400,
+  };
+  static readonly RESOURCE_PARAMS_REQUIRED = {
+    message:
+      'Resource name, quantity, description and lock period in minutes are required',
+    status: 400,
+  };
+  static readonly RESOURCE_NOT_FOUND = {
+    message: 'Resource not found',
+    status: 404,
+  };
+  static readonly INSUFFICIENT_QUANTITY = {
+    message: 'Insufficient quantity available',
+    status: 400,
+  };
+  static readonly INVALID_PARAMETERS = {
+    message: 'Invalid parameters',
+    status: 400,
+  };
+  static readonly INVALID_RESOURCE_ID = {
+    message: 'Invalid resource ID',
+    status: 400,
+  };
+  static readonly INVALID_QUANTITY = {
+    message: 'Quantity must be greater than zero',
+    status: 400,
+  };
+  static readonly INVALID_START_TIME = {
+    message: 'Invalid start time',
+    status: 400,
+  };
+  static readonly ERROR_BOOKING_SLOT = {
+    message: 'Error booking slot',
+    status: 400,
+  };
+  static readonly ERROR_RETRIEVING_SLOTS = {
+    message: 'Failed to retrieve available slots. Please try again.',
+    status: 400,
+  };
 }
 
 export default Errors;

@@ -63,7 +63,6 @@ const authenticationService = new AuthenticationService();
  *                   type: string
  *                   example: Invalid credentials
  */
-
 export async function POST(request: NextRequest) {
   try {
     const { username, email, phoneNumber, password, otp } =

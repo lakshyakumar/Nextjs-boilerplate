@@ -19,3 +19,11 @@ export type DecodedTokenPayload = {
   iat: number;
   exp: number;
 };
+
+export type Resource = {
+  _id?: string;
+  resourceName: string;
+  quantity: number;
+  description: string;
+  lockPeriodinMinutes: number;
+};
